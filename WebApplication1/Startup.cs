@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using WebApplication1.Controllers;
 using WebApplication1.Data;
 
 namespace WebApplication1
@@ -26,6 +27,11 @@ namespace WebApplication1
             {
                 cfg.UseSqlServer(Configuration.GetConnectionString("DutchConnectionString"));
             });
+
+            services.AddTransient<DutchSeeder>();
+            // registring repository with services.
+            services.AddScoped<IProductRepository, ProductRepository>();
+            
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 

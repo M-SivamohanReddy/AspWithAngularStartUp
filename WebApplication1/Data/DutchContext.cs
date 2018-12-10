@@ -17,5 +17,19 @@ namespace WebApplication1.Data
         public DbSet<Product> Products { get; set; }
         public DbSet <Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Order>()
+                .HasData(new Order()
+                {
+                    Id = 1,
+                    OrderDate = DateTime.UtcNow,
+                    OrderNumber = "1234",
+                });
+        }
     }
 }
